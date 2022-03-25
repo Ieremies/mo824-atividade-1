@@ -1,0 +1,60 @@
+% Created 2022-03-25 sex 20:43
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+
+\theoremstyle{definition}
+\newtheorem{teo}{Teorema}[section]
+\theoremstyle{definition}
+\newtheorem{defi}{Definicao}[section]
+\theoremstyle{remark}
+\newtheorem{obs}{Observação}[section]
+\theoremstyle{remark}
+\newtheorem{lema}{Lema}[section]
+\theoremstyle{remark}
+\newtheorem{prop}{Propriedade}[section]
+\theoremstyle{remark}
+\newtheorem{coro}{Corolario}[section]
+\theoremstyle{definition}
+\newtheorem{prep}{Preposição}[section]
+\author{Ieremies Vieira da Fonseca Romero}
+\date{\today}
+\title{MO824 - Atividade 1}
+\hypersetup{
+ pdfauthor={Ieremies Vieira da Fonseca Romero},
+ pdftitle={MO824 - Atividade 1},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.6)}, 
+ pdflang={Portuguese}}
+\usepackage{biblatex}
+\addbibresource{~/arq/bib.bib}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Formulação}
+\label{sec:orgc279aa8}
+O objetivo é minimizar os custos totais. Nesse problema, podemos modelar o custo como \(\min z = \sum \limits_{j \in J} \sum \limits_{f \in F} \sum \limits_{l \in L} x_{p,l, f} * (p_{p,l,f} + t_{p,f,j})\), onde \(x_{p,f,l}\) é a quantidade de toneladas do produto \(p \in P\) produzido pela máquina \(l \in L\) na fábrica \(f \in F\).
+
+De restrições, temos:
+\begin{itemize}
+\item Soma dos produtos p produzidos em todas as máquinas de todas as fábricas deve ser IGUAL/MENOR a demanda do cliente. \(\sum_{f \in F} \sum_{l \in l} \sum_{p \in P} x_{p,f,l} < D{j,p}\) para todo cliente \(j \in J\)
+\item A quantidade de matéria prima gasta em cada máquina tem que ser menor que a quantidade disponível. \(\sum_{p \in P} \sum_{l \in L} x_{p,f,l} r_{m,p,l} < R_{m,f}\) para toda matéria prima \(m \in M\) em toda fábrica \(f \in F\).
+\item A quantidade produzida tem que ser menor que a capacidade da máquina.
+\(\sum_{p \in P} x_{p,f,l} < C_{f,l}\) para cada máquina \(l \in L\) em cada fábrica \(f \in F\)
+\item A quantidade produzida deve ser positiva. \(x_{p,f,l} > 0\) para todo \(p \in P\) para todo \(f \in F\) para todo \(l \in L\).
+\end{itemize}
+\end{document}
