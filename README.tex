@@ -1,4 +1,4 @@
-% Created 2022-03-25 sex 20:43
+% Created 2022-03-28 seg 13:21
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -12,6 +12,7 @@
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
+\usepackage{amsthm}
 
 \theoremstyle{definition}
 \newtheorem{teo}{Teorema}[section]
@@ -27,11 +28,11 @@
 \newtheorem{coro}{Corolario}[section]
 \theoremstyle{definition}
 \newtheorem{prep}{Preposição}[section]
-\author{Ieremies Vieira da Fonseca Romero}
-\date{\today}
+\author{Ieremies Romero, Gian Luna}
+\date{}
 \title{MO824 - Atividade 1}
 \hypersetup{
- pdfauthor={Ieremies Vieira da Fonseca Romero},
+ pdfauthor={Ieremies Romero, Gian Luna},
  pdftitle={MO824 - Atividade 1},
  pdfkeywords={},
  pdfsubject={},
@@ -42,19 +43,31 @@
 \begin{document}
 
 \maketitle
-\tableofcontents
 
+\section*{Formulation}
+\label{sec:org4712e53}
+\subsection*{Objective Function}
+\label{sec:org8c8f195}
+Our objective, as said in the activity, is to minimize the costs of production and shipment of goods from a set of factories to another set of clients. Since we have cost associated with each of those operations, we will utilize two set of variables: \(x_{p,l,f}\) to represent the amount (in tons) of product \(p \in P\) produced by machine \(l \in L\) at factory \(f \in F\) and \(y_{p, f, j}\) to represent the amount (in tons) of product \(p \in P\) transported from factory \(f \in F\) to client \(j \in J\).
 
-\section{Formulação}
-\label{sec:orgc279aa8}
-O objetivo é minimizar os custos totais. Nesse problema, podemos modelar o custo como \(\min z = \sum \limits_{j \in J} \sum \limits_{f \in F} \sum \limits_{l \in L} x_{p,l, f} * (p_{p,l,f} + t_{p,f,j})\), onde \(x_{p,f,l}\) é a quantidade de toneladas do produto \(p \in P\) produzido pela máquina \(l \in L\) na fábrica \(f \in F\).
+That way, we can describe our objective function as
+\[ \min z = \sum \limits_{p \in P} \sum_{f \in F} (\sum \limits_{l \in L} x_{p,l,f}p_{p,f,l} + \sum_{j \in J} y_{p,f,j}t_{p,f,j)}). \]
+\subsection*{Restrictions}
+\label{sec:orgfa47c7e}
+First, we need to ensure every demand is satisfied, which means the amount of each product transported for each client should be at least greater than the client's demand. In another terms, we have
+\[ D_{p,j} \leq \sum_{f \in F} y_{p,f,j} \ \forall p \in P \ \forall j \in J. \]
 
-De restrições, temos:
-\begin{itemize}
-\item Soma dos produtos p produzidos em todas as máquinas de todas as fábricas deve ser IGUAL/MENOR a demanda do cliente. \(\sum_{f \in F} \sum_{l \in l} \sum_{p \in P} x_{p,f,l} < D{j,p}\) para todo cliente \(j \in J\)
-\item A quantidade de matéria prima gasta em cada máquina tem que ser menor que a quantidade disponível. \(\sum_{p \in P} \sum_{l \in L} x_{p,f,l} r_{m,p,l} < R_{m,f}\) para toda matéria prima \(m \in M\) em toda fábrica \(f \in F\).
-\item A quantidade produzida tem que ser menor que a capacidade da máquina.
-\(\sum_{p \in P} x_{p,f,l} < C_{f,l}\) para cada máquina \(l \in L\) em cada fábrica \(f \in F\)
-\item A quantidade produzida deve ser positiva. \(x_{p,f,l} > 0\) para todo \(p \in P\) para todo \(f \in F\) para todo \(l \in L\).
-\end{itemize}
+Then, we have to ensure the amount of products produced should match the amount transported from each factory.
+\[ \sum \limits_{l \in L} x_{p,f,l} = \sum_{j \in J} y_{p,f,j} \ \forall p \in P \ \forall f \in F . \]
+
+Lastly, we have to be able to produced said products, which means, we must have the materials required and the capacity.
+\begin{align*}
+R_{m,f} &\geq \sum \limits_{p \in P} \sum \limits_{l \in L} x_{p,f,l}r_{m,p,l} \ \forall f \in F \ \forall m \in M \\
+C_{f,l} &\geq \sum_{p \in P} x_{p,f,l} \ \forall l \in L \ \forall f \in F.
+\end{align*}
+To complete our restrictions, since we modeled each variable as the amount produced, they should be positive.
+\begin{align*}
+x_{p,l,f} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall f \in F \\
+y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
+\end{align*}
 \end{document}
