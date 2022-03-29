@@ -1,4 +1,4 @@
-% Created 2022-03-28 seg 13:21
+% Created 2022-03-29 ter 12:50
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -45,15 +45,15 @@
 \maketitle
 
 \section*{Formulation}
-\label{sec:org4712e53}
+\label{sec:orga106d7c}
 \subsection*{Objective Function}
-\label{sec:org8c8f195}
+\label{sec:org5ed020e}
 Our objective, as said in the activity, is to minimize the costs of production and shipment of goods from a set of factories to another set of clients. Since we have cost associated with each of those operations, we will utilize two set of variables: \(x_{p,l,f}\) to represent the amount (in tons) of product \(p \in P\) produced by machine \(l \in L\) at factory \(f \in F\) and \(y_{p, f, j}\) to represent the amount (in tons) of product \(p \in P\) transported from factory \(f \in F\) to client \(j \in J\).
 
 That way, we can describe our objective function as
 \[ \min z = \sum \limits_{p \in P} \sum_{f \in F} (\sum \limits_{l \in L} x_{p,l,f}p_{p,f,l} + \sum_{j \in J} y_{p,f,j}t_{p,f,j)}). \]
 \subsection*{Restrictions}
-\label{sec:orgfa47c7e}
+\label{sec:org72c21d0}
 First, we need to ensure every demand is satisfied, which means the amount of each product transported for each client should be at least greater than the client's demand. In another terms, we have
 \[ D_{p,j} \leq \sum_{f \in F} y_{p,f,j} \ \forall p \in P \ \forall j \in J. \]
 
@@ -65,8 +65,23 @@ Lastly, we have to be able to produced said products, which means, we must have 
 R_{m,f} &\geq \sum \limits_{p \in P} \sum \limits_{l \in L} x_{p,f,l}r_{m,p,l} \ \forall f \in F \ \forall m \in M \\
 C_{f,l} &\geq \sum_{p \in P} x_{p,f,l} \ \forall l \in L \ \forall f \in F.
 \end{align*}
+
 To complete our restrictions, since we modeled each variable as the amount produced, they should be positive.
 \begin{align*}
+x_{p,l,f} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall f \in F \\
+y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
+\end{align*}
+\subsection*{Final program}
+\label{sec:org8288e0d}
+Combining everything, we have our Linear Program as follows.
+
+
+\begin{align*}
+\min z &= \sum \limits_{p \in P} \sum_{f \in F} (\sum \limits_{l \in L} x_{p,l,f}p_{p,f,l} + \sum_{j \in J} y_{p,f,j}t_{p,f,j)}) \\
+\text{subject to } \sum_{f \in F} y_{p,f,j} &\geq D_{p,j} \ \forall p \in P \ \forall j \in J. \\
+\sum \limits_{l \in L} x_{p,f,l} - \sum_{j \in J} y_{p,f,j} &= 0 \ \forall p \in P \ \forall f \in F . \\
+\sum \limits_{p \in P} \sum \limits_{l \in L} x_{p,f,l}r_{m,p,l} &\leq R_{m,f} \ \forall f \in F \ \forall m \in M \\
+\sum_{p \in P} x_{p,f,l} &\leq C_{f,l} \ \forall l \in L \ \forall f \in F. \\
 x_{p,l,f} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall f \in F \\
 y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
 \end{align*}
