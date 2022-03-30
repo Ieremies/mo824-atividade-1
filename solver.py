@@ -15,7 +15,7 @@ class Solver:
         # RESTRICTIONS
         # Demmand constrains
         model.addConstrs(
-            ( sum([y[p][f][j] for f in range(F)]) <= D[p][j] for j in range(J) for p in range(P)),
+            ( sum([y[p][f][j] for f in range(F)]) >= D[p][j] for j in range(J) for p in range(P)),
             name="demmand"
         )
         # Produced equals transported constrains
@@ -37,13 +37,13 @@ class Solver:
         model.optimize()
 
         print("Final =", model.ObjVal)
-        model.write("Atividade 1.json")
+        model.write(f"instancia {J}.json")
         model.dispose()
 
 if __name__ == "__main__":
     g = Gerador()
     s = Solver()
-    for i in range(11):
+    for i in range(1,11):
         J, F, L, M, P, D, r, R, C, C_p, C_t = g.gen(i*100)
         print("Instância = ",J, F, L, M, P)
         s.solve(J, F, L, M, P, D, r, R, C, C_p, C_t)

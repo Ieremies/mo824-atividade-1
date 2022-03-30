@@ -3,6 +3,8 @@
 #+latex_header: \usepackage{amsthm}
 #+options: toc:nil num:nil date:nil
 
+# https://www.gurobi.com/documentation/9.5/refman/py_python_api_details.html
+
 * Formulation
 ** Objective Function
 Our objective, as said in the activity, is to minimize the costs of production and shipment of goods from a set of factories to another set of clients. Since we have cost associated with each of those operations, we will utilize two set of variables: $x_{p,l,f}$ to represent the amount (in tons) of product $p \in P$ produced by machine $l \in L$ at factory $f \in F$ and $y_{p, f, j}$ to represent the amount (in tons) of product $p \in P$ transported from factory $f \in F$ to client $j \in J$.
