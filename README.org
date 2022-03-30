@@ -8,7 +8,7 @@
 Our objective, as said in the activity, is to minimize the costs of production and shipment of goods from a set of factories to another set of clients. Since we have cost associated with each of those operations, we will utilize two set of variables: $x_{p,l,f}$ to represent the amount (in tons) of product $p \in P$ produced by machine $l \in L$ at factory $f \in F$ and $y_{p, f, j}$ to represent the amount (in tons) of product $p \in P$ transported from factory $f \in F$ to client $j \in J$.
 
 That way, we can describe our objective function as
-\[ \min z = \sum \limits_{p \in P} \sum_{f \in F} (\sum \limits_{l \in L} x_{p,l,f}p_{p,f,l} + \sum_{j \in J} y_{p,f,j}t_{p,f,j)}). \]
+\[ \min z = \sum \limits_{p \in P} \sum_{f \in F} (\sum \limits_{l \in L} x_{p,f,l}p_{p,f,l} + \sum_{j \in J} y_{p,f,j}t_{p,f,j)}). \]
 ** Restrictions
 First, we need to ensure every demand is satisfied, which means the amount of each product transported for each client should be at least greater than the client's demand. In another terms, we have
 \[ D_{p,j} \leq \sum_{f \in F} y_{p,f,j} \ \forall p \in P \ \forall j \in J. \]

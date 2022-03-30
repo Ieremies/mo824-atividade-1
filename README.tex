@@ -1,4 +1,4 @@
-% Created 2022-03-29 ter 12:50
+% Created 2022-03-29 ter 21:13
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -45,15 +45,15 @@
 \maketitle
 
 \section*{Formulation}
-\label{sec:orga106d7c}
+\label{sec:org5863df3}
 \subsection*{Objective Function}
-\label{sec:org5ed020e}
+\label{sec:org7c88d03}
 Our objective, as said in the activity, is to minimize the costs of production and shipment of goods from a set of factories to another set of clients. Since we have cost associated with each of those operations, we will utilize two set of variables: \(x_{p,l,f}\) to represent the amount (in tons) of product \(p \in P\) produced by machine \(l \in L\) at factory \(f \in F\) and \(y_{p, f, j}\) to represent the amount (in tons) of product \(p \in P\) transported from factory \(f \in F\) to client \(j \in J\).
 
 That way, we can describe our objective function as
-\[ \min z = \sum \limits_{p \in P} \sum_{f \in F} (\sum \limits_{l \in L} x_{p,l,f}p_{p,f,l} + \sum_{j \in J} y_{p,f,j}t_{p,f,j)}). \]
+\[ \min z = \sum \limits_{p \in P} \sum_{f \in F} (\sum \limits_{l \in L} x_{p,f,l}p_{p,f,l} + \sum_{j \in J} y_{p,f,j}t_{p,f,j)}). \]
 \subsection*{Restrictions}
-\label{sec:org72c21d0}
+\label{sec:org55ab83c}
 First, we need to ensure every demand is satisfied, which means the amount of each product transported for each client should be at least greater than the client's demand. In another terms, we have
 \[ D_{p,j} \leq \sum_{f \in F} y_{p,f,j} \ \forall p \in P \ \forall j \in J. \]
 
@@ -72,7 +72,7 @@ x_{p,l,f} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall f \in F \\
 y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
 \end{align*}
 \subsection*{Final program}
-\label{sec:org8288e0d}
+\label{sec:orga152067}
 Combining everything, we have our Linear Program as follows.
 
 
