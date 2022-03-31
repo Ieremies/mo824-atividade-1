@@ -21,7 +21,7 @@ class Solver:
         # Produced equals transported constrains
         model.addConstrs(
             (sum(x[p][f]) - sum(y[p][f]) == 0 for f in range(F) for p in range(P)),
-            name="prod equals transp"
+            name="prod_equals_transp"
         )
         # Material availability constrains
         model.addConstrs(
@@ -36,7 +36,15 @@ class Solver:
 
         model.optimize()
 
-        print("Final =", model.ObjVal)
+        with open("res.csv", "a") as res:
+            res.write(f"Instancia com J =  , {J}\n")
+            res.write(f"X variables        , {P*F*L}\n")
+            res.write(f"Y variables        , {P*F*J}\n")
+            res.write(f"Demmand            , {J*P}\n")
+            res.write(f"Prod_equals_transp , {F*P}\n")
+            res.write(f"Meterial           , {F*M}\n")
+            res.write(f"Capacity           , {F*L}\n")
+            res.write(f"Objecttive func    , {model.objVal}\n\n")
         model.write(f"instancia {J}.json")
         model.dispose()
 
@@ -44,6 +52,6 @@ if __name__ == "__main__":
     g = Gerador()
     s = Solver()
     for i in range(1,11):
-        J, F, L, M, P, D, r, R, C, C_p, C_t = g.gen(i*100)
+        J, F, L, M, P, D, r, R, C, C_p, C_t = g.gen(i*10)
         print("Instância = ",J, F, L, M, P)
         s.solve(J, F, L, M, P, D, r, R, C, C_p, C_t)
