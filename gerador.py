@@ -9,7 +9,7 @@ class Gerador ( object ):
         P = rand ( 5, 10 )
         D =   [ [ rand(10,20 ) for j in range(J) ] for p in range(P) ]
         r = [ [ [ rand( 1, 5 ) for l in range(L) ] for m in range(P) ] for p in range(M) ]
-        R =   [ [ rand(80,100) for f in range(F) ] for m in range(M) ]
+        R =   [ [ rand(800,1000) for f in range(F) ] for m in range(M) ]
         C =   [ [ rand(80,100) for l in range(L) ] for f in range(F) ]
         C_p = [ [ [ rand(10,100) for l in range(L) ] for f in range(F) ] for p in range(P) ]
         C_t = [ [ [ rand(10,20 ) for j in range(J) ] for f in range(F) ] for p in range(P) ]
