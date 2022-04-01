@@ -1,4 +1,4 @@
-% Created 2022-03-29 ter 21:13
+% Created 2022-04-01 sex 17:11
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -45,15 +45,15 @@
 \maketitle
 
 \section*{Formulation}
-\label{sec:org5863df3}
+\label{sec:orgd858f98}
 \subsection*{Objective Function}
-\label{sec:org7c88d03}
+\label{sec:org9b71491}
 Our objective, as said in the activity, is to minimize the costs of production and shipment of goods from a set of factories to another set of clients. Since we have cost associated with each of those operations, we will utilize two set of variables: \(x_{p,l,f}\) to represent the amount (in tons) of product \(p \in P\) produced by machine \(l \in L\) at factory \(f \in F\) and \(y_{p, f, j}\) to represent the amount (in tons) of product \(p \in P\) transported from factory \(f \in F\) to client \(j \in J\).
 
 That way, we can describe our objective function as
 \[ \min z = \sum \limits_{p \in P} \sum_{f \in F} (\sum \limits_{l \in L} x_{p,f,l}p_{p,f,l} + \sum_{j \in J} y_{p,f,j}t_{p,f,j)}). \]
 \subsection*{Restrictions}
-\label{sec:org55ab83c}
+\label{sec:org8d27b20}
 First, we need to ensure every demand is satisfied, which means the amount of each product transported for each client should be at least greater than the client's demand. In another terms, we have
 \[ D_{p,j} \leq \sum_{f \in F} y_{p,f,j} \ \forall p \in P \ \forall j \in J. \]
 
@@ -72,7 +72,7 @@ x_{p,l,f} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall f \in F \\
 y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
 \end{align*}
 \subsection*{Final program}
-\label{sec:orga152067}
+\label{sec:orgcc6b210}
 Combining everything, we have our Linear Program as follows.
 
 
@@ -85,4 +85,30 @@ Combining everything, we have our Linear Program as follows.
 x_{p,l,f} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall f \in F \\
 y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
 \end{align*}
+
+\section*{Results}
+\label{sec:org6a56f91}
+
+\begin{center}
+\begin{tabular}{rrrrrr}
+\# Clients & \# Variables & \# Constrains & Result cost & Execution time & Work\\
+\hline
+100 & 146880 & 4128 & 11005953 & 0.8959 & 0.8408\\
+200 & 282880 & 6984 & 20663983 & 1.9750 & 2.0171\\
+300 & 1378600 & 12040 & 22862187 & 8.7141 & 10.3167\\
+400 & 2400830 & 21023 & 52976044 & 18.7725 & 20.8948\\
+500 & 4558284 & 28428 & 79913943 & 38.5863 & 39.2341\\
+600 & 5070720 & 27684 & 67383596 & 52.1588 & 43.8014\\
+700 & 5857758 & 37248 & 119142323 & 64.8838 & 51.0371\\
+800 & 9353070 & 43124 & 118680540 & 183.6494 & 82.7664\\
+900 & 9546845 & 37947 & 74096075 & 314.5878 & 143.8355\\
+1000 & 11612258 & 44927 & 97121488 & 203.0819 & 95.4361\\
+\end{tabular}
+\end{center}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{./chart.png}
+\caption{Plotting in logarithm scale of execution time by number of clients.}
+\end{figure}
 \end{document}

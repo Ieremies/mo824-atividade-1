@@ -1,6 +1,7 @@
 import gurobipy as gp
 from gurobipy import GRB
 from gerador import Gerador
+import sys
 
 class Solver:
     def solve(self, J, F, L, M, P, D, r, R, C, C_p, C_t):
@@ -45,13 +46,13 @@ class Solver:
             res.write(f"Meterial           , {F*M}\n")
             res.write(f"Capacity           , {F*L}\n")
             res.write(f"Objecttive func    , {model.objVal}\n\n")
-        model.write(f"instancia {J}.json")
+        model.write(f"inst/instancia {J}.json")
         model.dispose()
 
 if __name__ == "__main__":
     g = Gerador()
     s = Solver()
-    for i in range(1,11):
-        J, F, L, M, P, D, r, R, C, C_p, C_t = g.gen(i*10)
-        print("Instância = ",J, F, L, M, P)
+    for i in range(int(sys.argv[1]), 1001, 50):
+        J, F, L, M, P, D, r, R, C, C_p, C_t = g.gen(i)
+        print("\n\n\nInstância = ",J, F, L, M, P)
         s.solve(J, F, L, M, P, D, r, R, C, C_p, C_t)

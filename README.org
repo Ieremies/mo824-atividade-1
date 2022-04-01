@@ -3,8 +3,6 @@
 #+latex_header: \usepackage{amsthm}
 #+options: toc:nil num:nil date:nil
 
-# https://www.gurobi.com/documentation/9.5/refman/py_python_api_details.html
-
 * Formulation
 ** Objective Function
 Our objective, as said in the activity, is to minimize the costs of production and shipment of goods from a set of factories to another set of clients. Since we have cost associated with each of those operations, we will utilize two set of variables: $x_{p,l,f}$ to represent the amount (in tons) of product $p \in P$ produced by machine $l \in L$ at factory $f \in F$ and $y_{p, f, j}$ to represent the amount (in tons) of product $p \in P$ transported from factory $f \in F$ to client $j \in J$.
@@ -42,3 +40,21 @@ Combining everything, we have our Linear Program as follows.
 x_{p,l,f} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall f \in F \\
 y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
 \end{align*}
+
+* Results
+
+| # Clients | # Variables | # Constrains | Result cost | Execution time |     Work |
+|-----------+-------------+--------------+-------------+----------------+----------|
+|       100 |      146880 |         4128 |    11005953 |         0.8959 |   0.8408 |
+|       200 |      282880 |         6984 |    20663983 |         1.9750 |   2.0171 |
+|       300 |     1378600 |        12040 |    22862187 |         8.7141 |  10.3167 |
+|       400 |     2400830 |        21023 |    52976044 |        18.7725 |  20.8948 |
+|       500 |     4558284 |        28428 |    79913943 |        38.5863 |  39.2341 |
+|       600 |     5070720 |        27684 |    67383596 |        52.1588 |  43.8014 |
+|       700 |     5857758 |        37248 |   119142323 |        64.8838 |  51.0371 |
+|       800 |     9353070 |        43124 |   118680540 |       183.6494 |  82.7664 |
+|       900 |     9546845 |        37947 |    74096075 |       314.5878 | 143.8355 |
+|      1000 |    11612258 |        44927 |    97121488 |       203.0819 |  95.4361 |
+
+#+Caption: Plotting in logarithm scale of execution time by number of clients.
+[[file:./chart.png]]
