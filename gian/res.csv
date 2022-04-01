@@ -1,0 +1,90 @@
+Instancia com J =  , 100
+X variables        , 4060
+Y variables        , 81200
+Demmand            , 700
+Prod_equals_transp , 812
+Meterial           , 580
+Capacity           , 580
+Objecttive func    , 1254910.0
+
+Instancia com J =  , 200
+X variables        , 9765
+Y variables        , 279000
+Demmand            , 1000
+Prod_equals_transp , 1395
+Meterial           , 1395
+Capacity           , 1953
+Objecttive func    , 1793768.0
+
+Instancia com J =  , 300
+X variables        , 39830
+Y variables        , 1707000
+Demmand            , 3000
+Prod_equals_transp , 5690
+Meterial           , 4552
+Capacity           , 3983
+Objecttive func    , 5409044.0
+
+Instancia com J =  , 400
+X variables        , 20610
+Y variables        , 916000
+Demmand            , 2000
+Prod_equals_transp , 2290
+Meterial           , 4122
+Capacity           , 4122
+Objecttive func    , 3593297.0
+
+Instancia com J =  , 500
+X variables        , 44750
+Y variables        , 2237500
+Demmand            , 2500
+Prod_equals_transp , 4475
+Meterial           , 6265
+Capacity           , 8950
+Objecttive func    , 4504440.0
+
+Instancia com J =  , 600
+X variables        , 26796
+Y variables        , 2296800
+Demmand            , 3600
+Prod_equals_transp , 3828
+Meterial           , 3828
+Capacity           , 4466
+Objecttive func    , 6438896.0
+
+Instancia com J =  , 700
+X variables        , 70488
+Y variables        , 5482400
+Demmand            , 5600
+Prod_equals_transp , 7832
+Meterial           , 5874
+Capacity           , 8811
+Objecttive func    , 10044034.0
+
+Instancia com J =  , 800
+X variables        , 104184
+Y variables        , 10418400
+Demmand            , 7200
+Prod_equals_transp , 13023
+Meterial           , 14470
+Capacity           , 11576
+Objecttive func    , 12993386.0
+
+Instancia com J =  , 900
+X variables        , 45720
+Y variables        , 8229600
+Demmand            , 5400
+Prod_equals_transp , 9144
+Meterial           , 10668
+Capacity           , 7620
+Objecttive func    , 9711961.0
+
+Instancia com J =  , 1000
+X variables        , 46160
+Y variables        , 9232000
+Demmand            , 8000
+Prod_equals_transp , 9232
+Meterial           , 5770
+Capacity           , 5770
+Objecttive func    , 14290822.0
+
