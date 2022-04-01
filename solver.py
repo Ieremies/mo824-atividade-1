@@ -1,42 +1,43 @@
 import gurobipy as gp
 from gurobipy import GRB
 from gerador import Gerador
-import sys
 
 class Solver:
     def solve(self, J, F, L, M, P, D, r, R, C, C_p, C_t):
         model = gp.Model("Atividade 1")
         # Variables declaration
-        x = [ [ [ model.addVar(lb=0.0, ub=GRB.INFINITY, obj=C_p[p][f][l] , vtype=GRB.INTEGER, name=f"x[{p}][{f}][{l}])") for l in range(L) ] for f in range(F) ] for p in range(P) ]
+        x = [ [ [ model.addVar(lb=0.0, ub=GRB.INFINITY, obj=C_p[p][l][f] , vtype=GRB.INTEGER, name=f"x[{p}][{l}][{f}])") for f in range(F) ] for l in range(L) ] for p in range(P) ]
         y = [ [ [ model.addVar(lb=0.0, ub=GRB.INFINITY, obj=C_t[p][f][j] , vtype=GRB.INTEGER, name=f"y[{p}][{f}][{j}])") for j in range(J) ] for f in range(F) ] for p in range(P) ]
 
         model.update()
+        # Do note we do not have to specify an objective function since we make use of obj param in model.addVar
         model.ModelSense = GRB.MAXIMIZE
 
         # RESTRICTIONS
         # Demmand constrains
         model.addConstrs(
-            ( sum([y[p][f][j] for f in range(F)]) >= D[p][j] for j in range(J) for p in range(P)),
+            ( sum([y[p][f][j] for f in range(F)]) >= D[j][p] for j in range(J) for p in range(P)),
             name="demmand"
         )
         # Produced equals transported constrains
         model.addConstrs(
-            (sum(x[p][f]) - sum(y[p][f]) == 0 for f in range(F) for p in range(P)),
+            (sum([x[p][l][f] for l in range(L)]) - sum(y[p][f]) == 0 for f in range(F) for p in range(P)),
             name="prod_equals_transp"
         )
         # Material availability constrains
         model.addConstrs(
-            (sum([x[p][f][l] for p in range(P) for l in range(L)]) <= R[m][f] for f in range(F) for m in range(M)),
+            (sum([x[p][l][f] for p in range(P) for l in range(L)]) <= R[m][f] for f in range(F) for m in range(M)),
             name="material"
         )
         # Capacity constrains
         model.addConstrs(
-            (sum([x[p][f][l] for p in range(P)]) <= C[f][l] for f in range(F) for l in range(L)),
+            (sum([x[p][l][f] for p in range(P)]) <= C[l][f] for f in range(F) for l in range(L)),
             name="capacity"
         )
 
         model.optimize()
 
+        # Save information about the instance
         with open("res.csv", "a") as res:
             res.write(f"Instancia com J =  , {J}\n")
             res.write(f"X variables        , {P*F*L}\n")
@@ -52,7 +53,7 @@ class Solver:
 if __name__ == "__main__":
     g = Gerador()
     s = Solver()
-    for i in range(int(sys.argv[1]), 1001, 50):
-        J, F, L, M, P, D, r, R, C, C_p, C_t = g.gen(i)
+    for i in range(100, 1001, 100 ):
+        J, F, L, M, P, D, r, R, C, C_p, C_t = g.gen(i) # generate instance
         print("\n\n\nInstância = ",J, F, L, M, P)
-        s.solve(J, F, L, M, P, D, r, R, C, C_p, C_t)
+        s.solve(J, F, L, M, P, D, r, R, C, C_p, C_t)  # solve instance

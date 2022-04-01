@@ -43,6 +43,9 @@ y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
 
 * Results
 
+Running our model using Gurobi 9.2 solver in a machine with a Ryzen 1800x octacore at 3.6GHz with 16GB of ram and 16GB of swap (which we saw being used). We obtained the following results.
+
+#+Caption: Result of running 10 random instances.
 | # Clients | # Variables | # Constrains | Result cost | Execution time |     Work |
 |-----------+-------------+--------------+-------------+----------------+----------|
 |       100 |      146880 |         4128 |    11005953 |         0.8959 |   0.8408 |
@@ -58,3 +61,9 @@ y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
 
 #+Caption: Plotting in logarithm scale of execution time by number of clients.
 [[file:./chart.png]]
+
+As of work time, we can see in the Figure 1 that we have an exponential relationship between number of client and work/running time.
+
+We do note the number of variables is proportional to the number of clients and we did not put the non-negativity constrains in the total number of constrains.
+
+Also, we can note some weirdness in our data: the randomness of the instances made the instances with $700$ an $800$ clients have out of proportion result value, compared to its peers; we also note the execution time of the instance with $900$ clients, which came out to be a lot slower than others. We do believe that anomaly maybe caused by some external factors involving the machine.

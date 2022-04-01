@@ -1,4 +1,4 @@
-% Created 2022-04-01 sex 17:11
+% Created 2022-04-01 sex 20:36
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -45,15 +45,15 @@
 \maketitle
 
 \section*{Formulation}
-\label{sec:orgd858f98}
+\label{sec:org4ccb63a}
 \subsection*{Objective Function}
-\label{sec:org9b71491}
+\label{sec:orgf9d4fa4}
 Our objective, as said in the activity, is to minimize the costs of production and shipment of goods from a set of factories to another set of clients. Since we have cost associated with each of those operations, we will utilize two set of variables: \(x_{p,l,f}\) to represent the amount (in tons) of product \(p \in P\) produced by machine \(l \in L\) at factory \(f \in F\) and \(y_{p, f, j}\) to represent the amount (in tons) of product \(p \in P\) transported from factory \(f \in F\) to client \(j \in J\).
 
 That way, we can describe our objective function as
 \[ \min z = \sum \limits_{p \in P} \sum_{f \in F} (\sum \limits_{l \in L} x_{p,f,l}p_{p,f,l} + \sum_{j \in J} y_{p,f,j}t_{p,f,j)}). \]
 \subsection*{Restrictions}
-\label{sec:org8d27b20}
+\label{sec:org950ef31}
 First, we need to ensure every demand is satisfied, which means the amount of each product transported for each client should be at least greater than the client's demand. In another terms, we have
 \[ D_{p,j} \leq \sum_{f \in F} y_{p,f,j} \ \forall p \in P \ \forall j \in J. \]
 
@@ -72,7 +72,7 @@ x_{p,l,f} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall f \in F \\
 y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
 \end{align*}
 \subsection*{Final program}
-\label{sec:orgcc6b210}
+\label{sec:org8b0fc58}
 Combining everything, we have our Linear Program as follows.
 
 
@@ -87,9 +87,13 @@ y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
 \end{align*}
 
 \section*{Results}
-\label{sec:org6a56f91}
+\label{sec:org3df66d6}
 
-\begin{center}
+Running our model using Gurobi 9.2 solver in a machine with a Ryzen 1800x octacore at 3.6GHz with 16GB of ram and 16GB of swap (which we saw being used). We obtained the following results.
+
+\begin{table}[htbp]
+\caption{Result of running 10 random instances.}
+\centering
 \begin{tabular}{rrrrrr}
 \# Clients & \# Variables & \# Constrains & Result cost & Execution time & Work\\
 \hline
@@ -104,11 +108,17 @@ y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
 900 & 9546845 & 37947 & 74096075 & 314.5878 & 143.8355\\
 1000 & 11612258 & 44927 & 97121488 & 203.0819 & 95.4361\\
 \end{tabular}
-\end{center}
+\end{table}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.9\linewidth]{./chart.png}
 \caption{Plotting in logarithm scale of execution time by number of clients.}
 \end{figure}
+
+As of work time, we can see in the Figure 1 that we have an exponential relationship between number of client and work/running time.
+
+We do note the number of variables is proportional to the number of clients and we did not put the non-negativity constrains in the total number of constrains.
+
+Also, we can note some weirdness in our data: the randomness of the instances made the instances with \(700\) an \(800\) clients have out of proportion result value, compared to its peers; we also note the execution time of the instance with \(900\) clients, which came out to be a lot slower than others. We do believe that anomaly maybe caused by some external factors involving the machine.
 \end{document}
