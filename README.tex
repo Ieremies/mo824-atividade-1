@@ -1,4 +1,4 @@
-% Created 2022-04-01 sex 20:36
+% Created 2022-04-01 sex 23:47
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -28,11 +28,11 @@
 \newtheorem{coro}{Corolario}[section]
 \theoremstyle{definition}
 \newtheorem{prep}{Preposição}[section]
-\author{Ieremies Romero, Gian Luna}
+\author{Ieremies Romero}
 \date{}
 \title{MO824 - Atividade 1}
 \hypersetup{
- pdfauthor={Ieremies Romero, Gian Luna},
+ pdfauthor={Ieremies Romero},
  pdftitle={MO824 - Atividade 1},
  pdfkeywords={},
  pdfsubject={},
@@ -45,15 +45,15 @@
 \maketitle
 
 \section*{Formulation}
-\label{sec:org4ccb63a}
+\label{sec:org756f348}
 \subsection*{Objective Function}
-\label{sec:orgf9d4fa4}
+\label{sec:org806f9ba}
 Our objective, as said in the activity, is to minimize the costs of production and shipment of goods from a set of factories to another set of clients. Since we have cost associated with each of those operations, we will utilize two set of variables: \(x_{p,l,f}\) to represent the amount (in tons) of product \(p \in P\) produced by machine \(l \in L\) at factory \(f \in F\) and \(y_{p, f, j}\) to represent the amount (in tons) of product \(p \in P\) transported from factory \(f \in F\) to client \(j \in J\).
 
 That way, we can describe our objective function as
 \[ \min z = \sum \limits_{p \in P} \sum_{f \in F} (\sum \limits_{l \in L} x_{p,f,l}p_{p,f,l} + \sum_{j \in J} y_{p,f,j}t_{p,f,j)}). \]
 \subsection*{Restrictions}
-\label{sec:org950ef31}
+\label{sec:orgf21f41b}
 First, we need to ensure every demand is satisfied, which means the amount of each product transported for each client should be at least greater than the client's demand. In another terms, we have
 \[ D_{p,j} \leq \sum_{f \in F} y_{p,f,j} \ \forall p \in P \ \forall j \in J. \]
 
@@ -72,7 +72,7 @@ x_{p,l,f} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall f \in F \\
 y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
 \end{align*}
 \subsection*{Final program}
-\label{sec:org8b0fc58}
+\label{sec:org3f67f54}
 Combining everything, we have our Linear Program as follows.
 
 
@@ -87,7 +87,7 @@ y_{p,l,j} &\geq 0 \ \forall p \in P \ \forall l \in L \ \forall j \in J.
 \end{align*}
 
 \section*{Results}
-\label{sec:org3df66d6}
+\label{sec:org6d70f96}
 
 Running our model using Gurobi 9.2 solver in a machine with a Ryzen 1800x octacore at 3.6GHz with 16GB of ram and 16GB of swap (which we saw being used). We obtained the following results.
 

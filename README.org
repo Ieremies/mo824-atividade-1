@@ -1,5 +1,5 @@
 #+Title: MO824 - Atividade 1
-#+Author: Ieremies Romero, Gian Luna
+#+Author: Ieremies Romero
 #+latex_header: \usepackage{amsthm}
 #+options: toc:nil num:nil date:nil
 
